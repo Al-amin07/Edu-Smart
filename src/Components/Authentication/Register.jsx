@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,7 +7,7 @@ import { updateProfile } from "firebase/auth";
 import auth from "../../Firebase/Firebase.config";
 const Register = () => {
   const { register, logOut } = useAuth();
-  const navigate = useNavigate()
+//   const navigate = useNavigate()
   const handleUserRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -40,7 +40,7 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1500
           });
-          navigate('/login')
+        //   navigate('/login')
     })
     .catch(error => toast(error.message))
   };

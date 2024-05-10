@@ -41,7 +41,7 @@ const Nav = () => {
           <li>
             <NavLink
               className={"btn btn-ghost text-white font-medium"}
-              to="/register"
+              to="/createassignment"
             >
               Create Assignments
             </NavLink>
@@ -49,7 +49,7 @@ const Nav = () => {
           <li>
             <NavLink
               className={"btn btn-ghost text-white font-medium"}
-              to="/register"
+              to="/pendingassignment"
             >
               Pending Assignments
             </NavLink>
@@ -68,7 +68,7 @@ const Nav = () => {
     </>
   );
   return (
-    <nav className="navbar bg-[#3F6A7F] py-3 px-4 text-white">
+    <nav className="navbar bg-[#3F6A7F] py-3 px-4 text-white mb-16">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

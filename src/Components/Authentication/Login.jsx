@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 
@@ -8,6 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const { logIn } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log(location);
     const handleUserLogin = e => {
         e.preventDefault();
         const form = e.target;
@@ -24,6 +27,7 @@ const Login = () => {
                 timer: 1500
               });
               console.log(result.user);
+              navigate(location?.state ? location.state : '/')
         })
         .catch(error => toast(error.message))
 

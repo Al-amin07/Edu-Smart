@@ -3,10 +3,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Assignment from "./Assignment";
 import Swal from "sweetalert2";
+import useAuth from "../Hooks/useAuth";
 
 
 const Assignments = () => {
     const [assignments, setAssignments] = useState([]);
+    const { user } = useAuth();
+    // console.log(user.email);
 
     useEffect(() => {
         axios.get('http://localhost:5000/allAssignment')
@@ -16,8 +19,18 @@ const Assignments = () => {
         .catch(error => console.log(error))
     }, [])
 
-    const handleAssignmentDelete = (id) => {
-        console.log(id);
+    const handleAssignmentDelete = (id, email) => {
+        if(user?.email !== email){
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `SomeOne Created the assignment.
+                You Can not Delete!`,
+            
+              });
+            return;
+        }
+        
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -29,13 +42,21 @@ const Assignments = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 axios.delete(`http://localhost:5000/assignment/${id}`)
-                .then(res => console.log(res.data))
+                .then(res => {
+                    if(res.data.deletedCount){
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                          });
+
+                          const newAssignments = assignments.filter(ass => ass._id !== id);
+                          setAssignments(newAssignments)
+                    }
+                })
                 .catch(error => console.log(error))
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
+                
+             
             }
           });
     }
@@ -43,12 +64,15 @@ const Assignments = () => {
     return (
         <div >
             <div className="space-y-8">
-                {
+                { user ?
                     assignments.map(assignment => <Assignment
                        key={assignment._id}
                        assignment={assignment}
                        handleAssignmentDelete={handleAssignmentDelete}
-                       ></Assignment>)
+                       ></Assignment>) :
+                       <div className="h-[300px] flex justify-center items-center">
+                        <span className="loading loading-spinner loading-lg"></span>
+                       </div>
                 }
             </div>
         </div>

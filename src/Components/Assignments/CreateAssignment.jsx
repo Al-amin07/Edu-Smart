@@ -20,14 +20,15 @@ const CreateAssignment = () => {
     const form = e.target;
     const title = form.title.value;
     const marks = form.marks.value;
-    const image = form.image.value;
+    const img_url = form.image.value;
+    const description = form.area.value;
     const difficulty = diff;
     const email = user.email;
 
-    const date = startDate;
+    const due_date = startDate;
     // console.log(title, marks, image, difficulty, email, date);
-    const newAssignment = { title, marks, image, difficulty, email, date };
-    // console.log(newAssignment);
+    const newAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
+    console.log(newAssignment);
     axios
       .post("http://localhost:5000/created", newAssignment)
       .then((res) => {
@@ -151,6 +152,7 @@ const CreateAssignment = () => {
           <textarea
             className=" col-span-2 h-[170px] textarea textarea-bordered"
             placeholder="Description"
+            name="area"
           ></textarea>
           <div className="form-control mt-6 col-span-2">
             <button type="submit" className="btn btn-primary">

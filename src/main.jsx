@@ -13,6 +13,7 @@ import CreateAssignment from "./Components/Assignments/CreateAssignment.jsx";
 import PendingAssingment from "./Components/Assignments/PendingAssingment.jsx";
 import Private from "./Components/Private/Private.jsx";
 import Assignments from "./Components/Assignments/Assignments.jsx";
+import Update from "./Components/Assignments/Update.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,12 @@ const router = createBrowserRouter([
       {
         path: '/assignment',
         element: <Assignments></Assignments>
+      },
+      {
+        path: '/update/:id',
+        element: <Private><Update></Update></Private>,
+        loader: ({params}) => fetch(`http://localhost:5000/update/${params.id}`)
+        
       }
     ],
   },

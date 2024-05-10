@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = () => {
@@ -13,8 +15,17 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password);
         logIn(email, password)
-        .then(result => console.log(result.user))
-        .catch(error => console.log(error))
+        .then(result => {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "SuccessFully Login",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              console.log(result.user);
+        })
+        .catch(error => toast(error.message))
 
 
     }
@@ -72,6 +83,7 @@ const Login = () => {
             <p className="px-8 text-white pb-6">New to Website? Please <Link to='/register' className="text-blue-800 underline font-bold">Register</Link></p>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

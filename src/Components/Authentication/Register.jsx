@@ -1,8 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-
+import Swal from "sweetalert2";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { updateProfile } from "firebase/auth";
+import auth from "../../Firebase/Firebase.config";
 const Register = () => {
-  const { register } = useAuth();
+  const { register, logOut } = useAuth();
+  const navigate = useNavigate()
   const handleUserRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -14,8 +19,30 @@ const Register = () => {
     register(email, password)
     .then(result => {
         console.log(result.user);
+        updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+          }).then(() => {
+            
+          }).catch((error) => {
+           console.log(error);
+          });
+          console.log(result.user);
+          logOut()
+          .then(() => {
+          })
+          .catch(error => console.log(error))
+
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "SuccessFully Register!!!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate('/login')
     })
-    .catch(error => console.log(error))
+    .catch(error => toast(error.message))
   };
   return (
     <div
@@ -100,6 +127,7 @@ const Register = () => {
           </p>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

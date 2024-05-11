@@ -37,7 +37,7 @@ const Update = () => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Your work has been saved",
+                    title: "Successfully Updated",
                     showConfirmButton: false,
                     timer: 1500
                   });
@@ -47,7 +47,7 @@ const Update = () => {
         .catch(error => console.log(error))
     }
     const handleChange = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         setDiff(e.target.value);
       };
 

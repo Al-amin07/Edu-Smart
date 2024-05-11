@@ -24,7 +24,9 @@ const Assignment = ({ assignment, handleAssignmentDelete }) => {
             <button className='btn text-xl font-medium rounded-2xl px-3 py-2 text-[#32A8FF] bg-[#E0EEFF]'>Update</button>
             </Link>
             <button onClick={() => handleAssignmentDelete(_id, email || '')} className='btn btn-error text-xl font-medium rounded-2xl px-3 py-2 text-white'>Delete</button>
+            <Link to={`/details/${_id}`}>
             <button className='btn text-xl font-medium rounded-2xl px-3 py-2 text-white bg-[#23BE0A]'>View Assignment</button>
+            </Link>
           </div>
         </div>
       </div>

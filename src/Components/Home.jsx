@@ -1,10 +1,13 @@
+import Banner from "./Header/Banner";
+import Faq from "./Header/Faq";
 
 
 
 const Home = () => {
     return (
         <div>
-        Home
+        <Banner></Banner>
+        <Faq></Faq>
         </div>
     );
 };

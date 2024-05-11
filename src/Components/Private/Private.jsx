@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const Private = ({children}) => {
   const { user, loading } = useAuth();
   const location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
   if(loading){
     return <div className="h-[300px] flex justify-center items-center">
         <span className=" loading loading-spinner loading-lg"></span>

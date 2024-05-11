@@ -10,13 +10,16 @@ const Assignments = () => {
     const [assignments, setAssignments] = useState([]);
     const { user } = useAuth();
     // console.log(user.email);
-
+    // const [diff, setDiff] = useState(null)
     useEffect(() => {
         axios.get('http://localhost:5000/allAssignment')
         .then(res => {
             setAssignments(res.data);
         })
         .catch(error => console.log(error))
+        // fetch('http://localhost:5000/allAssignment')
+        // .then(res => res.json())
+        // .then(data =>console.log(data))
     }, [])
 
     const handleAssignmentDelete = (id, email) => {
@@ -61,15 +64,42 @@ const Assignments = () => {
           });
     }
 
+    
+
+    const handleDiffSort = e => {
+        console.log(e.target.value);
+        const url = `http://localhost:5000/difficulty?diff=${e.target.value}`
+        axios.get(url)
+        .then(res => {
+            setAssignments(res.data);
+        })
+        .catch(error => console.log(error))
+        
+    }
+
     return (
         <div >
-            <div className="space-y-8">
-                { user ?
-                    assignments.map(assignment => <Assignment
-                       key={assignment._id}
-                       assignment={assignment}
-                       handleAssignmentDelete={handleAssignmentDelete}
-                       ></Assignment>) :
+          <div className="mb-12 flex justify-center">
+          <select onChange={handleDiffSort} className="w-[200px] border px-3 py-2 text-lg" name="" id="">
+                 <option value="none" selected disabled hidden>
+                  Difficulty</option> 
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+          </div>
+            <div >
+                { assignments ?
+                   <div className="space-y-8">
+                    {
+                         assignments.map(assignment => <Assignment
+                            key={assignment._id}
+                            assignment={assignment}
+                            handleAssignmentDelete={handleAssignmentDelete}
+                            ></Assignment>) 
+                    }
+                   </div>
+                   :
                        <div className="h-[300px] flex justify-center items-center">
                         <span className="loading loading-spinner loading-lg"></span>
                        </div>

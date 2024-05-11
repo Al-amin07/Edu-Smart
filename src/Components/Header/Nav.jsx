@@ -119,9 +119,9 @@ const Nav = () => {
               tabIndex={0}
               className="dropdown-content mt-2 z-[1] menu p-2 shadow bg-base-100 rounded-box w-60 space-y-2"
             >
-              <li>
+              <Link to='/mysubmission'>
                 <button className="btn">My Attempted Assignments</button>
-              </li>
+              </Link>
 
               <li>
                 <button onClick={handleLogout} className="btn">

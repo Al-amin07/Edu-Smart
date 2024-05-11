@@ -14,6 +14,9 @@ import PendingAssingment from "./Components/Assignments/PendingAssingment.jsx";
 import Private from "./Components/Private/Private.jsx";
 import Assignments from "./Components/Assignments/Assignments.jsx";
 import Update from "./Components/Assignments/Update.jsx";
+import Details from "./Components/Assignments/Details.jsx";
+import SubmitAssignment from "./Components/Assignments/SubmitAssignment.jsx";
+import MySubmission from "./Components/Assignments/MySubmission.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,25 @@ const router = createBrowserRouter([
         element: <Private><Update></Update></Private>,
         loader: ({params}) => fetch(`http://localhost:5000/update/${params.id}`)
         
+      },
+      {
+        path: '/details/:id',
+        element: <Private><Details></Details></Private>,
+        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
+      },
+      {
+        path: '/details/:id/takeAssignment/:id',
+        element: <Private><SubmitAssignment></SubmitAssignment></Private>,
+        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
+      },
+      {
+        path: '/mysubmission',
+        element: <MySubmission></MySubmission>
+      },
+      {
+        path: 'pendingassignment',
+        element: <Private><PendingAssingment></PendingAssingment></Private>,
+       
       }
     ],
   },

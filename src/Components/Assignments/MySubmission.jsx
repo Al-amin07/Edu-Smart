@@ -23,7 +23,7 @@ const MySubmission = () => {
       <h2 className="text-4xl  mb-6 font-semibold text-center">
         My Submissions
       </h2>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-12">
     
         {
             mysubmissions.map((submission) => <MySubmissionTable

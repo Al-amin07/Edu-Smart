@@ -65,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/mysubmission',
-        element: <MySubmission></MySubmission>
+        element: <Private><MySubmission></MySubmission></Private>
       },
       {
         path: 'pendingassignment',

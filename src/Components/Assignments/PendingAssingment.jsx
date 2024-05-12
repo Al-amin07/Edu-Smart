@@ -7,7 +7,7 @@ const PendingAssingment = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/submitAssignment")
+      .get("https://assignment-11-server-4.vercel.app/submitAssignment")
       .then((res) => {
         setAssignments(res.data);
         console.log(assignments);
@@ -33,7 +33,7 @@ const PendingAssingment = () => {
       id: _id,
     };
     axios
-      .patch("http://localhost:5000/obtainedMark", feedbackData)
+      .patch("https://assignment-11-server-4.vercel.app/obtainedMark", feedbackData)
       .then((res) => {
         console.log(res.data);
         const newAssignments = assignments.filter((ass) => ass._id !== _id);
@@ -82,7 +82,9 @@ const PendingAssingment = () => {
             </tbody>
           </table>
         </div> : 
-           <h2 className="text-3xl font-semibold text-center my-6"> Opps No Pending Assignment</h2>
+          <div className="h-[300px] flex justify-center items-center">
+            <span className="loading loading-spinner loading-lg"></span>
+          </div>
         }
       </div>
     </div>

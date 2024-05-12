@@ -30,7 +30,7 @@ const CreateAssignment = () => {
     const newAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
     console.log(newAssignment);
     axios
-      .post("http://localhost:5000/created", newAssignment)
+      .post("https://assignment-11-server-4.vercel.app/created", newAssignment)
       .then((res) => {
         if (res.data.insertedId) {
           toast("Assignment Added Successfully!!!");

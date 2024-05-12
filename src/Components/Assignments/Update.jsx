@@ -12,7 +12,7 @@ const Update = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const data = useLoaderData();
-    console.log(data);
+    // console.log(data);
     
    
     const [startDate, setStartDate] = useState(new Date());
@@ -30,12 +30,12 @@ const Update = () => {
         const due_date = startDate;
      
         const updateAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
-        axios.put(`http://localhost:5000/updateAssignment/${data._id}`, updateAssignment)
+        axios.put(`https://assignment-11-server-4.vercel.app/updateAssignment/${data._id}`, updateAssignment)
         .then(res => {
             console.log(res.data);
             if(res.data.modifiedCount || res.data.matchedCount){
                 Swal.fire({
-                    position: "top-end",
+                    position: "center",
                     icon: "success",
                     title: "Successfully Updated",
                     showConfirmButton: false,
@@ -54,7 +54,7 @@ const Update = () => {
     return (
         <div
         style={{
-          backgroundImage: "url('/9.jpeg')",
+          backgroundImage: "url('/update6.jpg')",
         }}
         className="hero bg-base-200 bg-cover bg-no-repeat  bg-center px-40 py-16 mt-12"
       >

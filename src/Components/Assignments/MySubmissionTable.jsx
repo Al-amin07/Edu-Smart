@@ -6,7 +6,7 @@ const MySubmissionTable = ({ submission }) => {
   const { file_url, img_url, name, title, marks, status, submitEmail } =
     submission;
   return (
-    <div className="p-4 shadow-xl hover:shadow-2xl  rounded-xl space-y-4 ">
+    <div className="p-4 shadow-xl hover:shadow-2xl  rounded-xl space-y-3 ">
       <div>
         <img className="h-[200px] w-full" src={img_url} alt="" />
       </div>

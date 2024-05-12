@@ -36,7 +36,7 @@ const SubmitAssignment = () => {
      }
      console.log(SubmittedAssignment);
    
-    axios.post('http://localhost:5000/submitAssignment', SubmittedAssignment)
+    axios.post('https://assignment-11-server-4.vercel.app/submitAssignment', SubmittedAssignment)
     .then(res => {
         // console.log('Success', res.data)
         if(res.data.success){
@@ -59,7 +59,9 @@ const SubmitAssignment = () => {
  
   return (
     <div>
-      <form className="border-2 p-8 w-1/2 mx-auto" onSubmit={handleSubmit}>
+      <form style={{
+        backgroundImage: "url('/submit2.jpeg')"
+      }} className="rounded-lg px-8 py-4 bg-cover bg-center bg-no-repeat w-1/2 mx-auto" onSubmit={handleSubmit}>
         <h2 className="text-3xl font-bold text-center my-4">
           Submit Assignment
         </h2>
@@ -91,15 +93,15 @@ const SubmitAssignment = () => {
         </div>
         
          <label className="label">
-            <span className="label-text text-xl font-medium">Pdf/Doc : </span>
+            <span className="label-text text-xl font-medium">Pdf/Doc Link : </span>
           </label>
         <input className="border w-full py-3 rounded-lg" type="url" 
         
          required name="upload" />{" "}
         <br /> <br />
-        <label>Short Note : </label>
+        <label className="text-lg font-medium">Short Note : </label>
         <textarea
-          className="border w-full px-8"
+          className="border w-full px-3"
           required
           name="area"
           rows={6}

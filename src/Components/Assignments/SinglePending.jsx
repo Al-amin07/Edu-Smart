@@ -1,43 +1,67 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const SinglePending = ({ assignment, ind }) => {
   console.log(assignment);
-  const { _id, title, marks, name } = assignment;
+  const { note,file_url, title, marks, name } = assignment;
+
+  const handleForm = e => {
+    e.preventDefault();
+     document.getElementById('my_modal_4').classList.add('hidden');
+    // console.log(form);
+    console.log('Submitted!!!!!');
+  }
   return (
-    //     <div className="card card-compact w-96 bg-base-100 shadow-xl">
-    //     <figure><img src={img_url} alt="Shoes" /></figure>
-    //     <div className="card-body">
-    //       <h2 className="card-title">Shoes!</h2>
-    //       <p>If a dog chews shoes whose shoes does he choose?</p>
-    //       <div className="card-actions justify-end">
-    //         <button className="btn btn-primary">Buy Now</button>
-    //       </div>
-    //     </div>
-    //   </div>
     <tr className="">
       {/* hover:bg-base-200 */}
       <th className="text-lg ">{ind}</th>
       <td className="text-lg ">{title}</td>
       <td className="text-lg ">{marks}</td>
       <td className="text-lg ">{name}</td>
-      {/* <td className="text-lg ">Blue</td> */}
-      {/* <Link to={`/marks/${_id}`} className="btn my-3 btn-warning ">Give Mark</Link > */}
-      <button  onClick={() => document.getElementById("my_modal_4").showModal()} className="btn my-3 btn-warning ">Give Mark</button>
+
+      <button
+        onClick={() => document.getElementById("my_modal_4").classList.remove('hidden')}
+        className="btn my-3 btn-warning "
+      >
+        Give Mark
+      </button>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
-      
-      <dialog id="my_modal_4" className="modal">
-        <div className="modal-box w-11/12 max-w-5xl">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">Click the button below to close</p>
+
+      <div id="my_modal_4" className="hidden modal">
+        <div className="modal-box  w-11/12 max-w-5xl">
+            <h2 className="text-3xl font-semibold text-center mb-3">Feedback Form</h2>
+          <p className="py-4 text-lg "><span className="underline">Uploded file :</span> {file_url}</p>
+          <h3 className="font-medium text-lg"><span className="underline">Notes  </span> :{note}</h3>
           <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button, it will close the modal */}
-              <button className="btn">Close</button>
+            <form id="formSubmit" method="dialog" onSubmit={handleForm} className="w-full border-2 rounded-xl p-5 space-y-3" >
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-xl font-medium">Obtained Marks</span>
+                </label>
+                <input
+                  type="number"
+                  name="obtainedMarks"
+                  placeholder="Marks"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-xl font-medium">Feedback</span>
+                </label>
+                <textarea
+                rows={5}
+                className="input input-bordered h-[150px]"
+                name="feedback"
+                required
+                ></textarea>
+              </div>
+              <button className="btn w-full btn-success text-white">Submit</button>
             </form>
           </div>
         </div>
-      </dialog>
+      </div>
     </tr>
   );
 };

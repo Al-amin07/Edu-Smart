@@ -11,7 +11,7 @@ const Banner = () => {
     
     <div className="carousel h-[300px] md:h-[460px] lg:h-[650px] w-full bg-gradient-to-r from-[#00000066] to-[#00000033] rounded-xl">
       <div id="slide1" className="carousel-item relative w-full">
-        <img src={one} className="w-full" />
+        <img src={four} className="w-full" />
         <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 left-[570px] bottom-8 z-20">
           <a href="#slide4" className="btn btn-circle">
             ❮
@@ -105,7 +105,7 @@ const Banner = () => {
 
       <div id="slide4" className="carousel-item relative w-full">
         <img
-          src={four}
+          src={one}
           className="w-full"
         />
         <div className="absolute flex justify-between transform -translate-y-1/2 gap-3 left-[570px] bottom-8 z-20">

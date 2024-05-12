@@ -8,7 +8,7 @@ const Details = () => {
 
    
   return (
-    <div className="flex  gap-6 border p-6 rounded-xl">
+    <div className="flex  gap-6 shadow-2xl p-6 rounded-xl bg-base-200">
       <div className="flex-1">
         <img src={img_url} alt="" />
       </div>

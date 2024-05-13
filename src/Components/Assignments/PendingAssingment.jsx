@@ -7,7 +7,7 @@ const PendingAssingment = () => {
 
   useEffect(() => {
     axios
-      .get("https://assignment-11-server-4.vercel.app/submitAssignment")
+      .get("http://localhost:5000/submitAssignment")
       .then((res) => {
         setAssignments(res.data);
         console.log(assignments);
@@ -16,6 +16,7 @@ const PendingAssingment = () => {
   }, []);
 
   const handleSubmit = (_id) => {
+    console.log(_id);
     const obtainedMarksField = document.getElementById("marks");
     const obtainedMarks = obtainedMarksField.value;
 
@@ -32,16 +33,17 @@ const PendingAssingment = () => {
       status,
       id: _id,
     };
-    axios
-      .patch("https://assignment-11-server-4.vercel.app/obtainedMark", feedbackData)
-      .then((res) => {
-        console.log(res.data);
-        const newAssignments = assignments.filter((ass) => ass._id !== _id);
-        setAssignments(newAssignments);
-        obtainedMarksField.value = "";
-        feedbackField.value = "";
-      })
-      .catch((error) => console.log(error));
+    console.log(feedbackData);
+    // axios
+    //   .patch("http://localhost:5000/obtainedMark", feedbackData)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     const newAssignments = assignments.filter((ass) => ass._id !== _id);
+    //     setAssignments(newAssignments);
+    //     obtainedMarksField.value = "";
+    //     feedbackField.value = "";
+    //   })
+    //   .catch((error) => console.log(error));
   };
 
   return (

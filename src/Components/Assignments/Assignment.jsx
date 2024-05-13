@@ -18,7 +18,7 @@ const Assignment = ({ assignment, handleAssignmentDelete }) => {
             <h2 className='text-xl font-semibold text-[#356feb]'>#Difficulty : {difficulty}</h2>
          </div>
          <p className='w-3/4 mb-4'>{description}</p>
-         <p className='text-[#23BE0A] font-semibold mb-3'>Created By : {email}</p>
+         {/* <p className='text-[#23BE0A] font-semibold mb-3'>Created By : {email}</p> */}
           <div className='space-x-5'>
             <Link to={`/update/${_id}`}>
             <button className='btn  font-medium rounded-2xl px-3 py-2 text-[#32A8FF] bg-[#E0EEFF]'>Update</button>

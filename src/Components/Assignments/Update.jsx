@@ -30,7 +30,7 @@ const Update = () => {
         const due_date = startDate;
      
         const updateAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
-        axios.put(`https://assignment-11-server-4.vercel.app/updateAssignment/${data._id}`, updateAssignment)
+        axios.put(`http://localhost:5000/updateAssignment/${data._id}`, updateAssignment)
         .then(res => {
             console.log(res.data);
             if(res.data.modifiedCount || res.data.matchedCount){

@@ -7,7 +7,7 @@ import MySubmissionTable from "./MySubmissionTable";
 const MySubmission = () => {
   const { user } = useAuth();
   const [mysubmissions, setMySubmissions] = useState([]);
-  const url = `https://assignment-11-server-4.vercel.app/mysubmission?email=${user?.email}`;
+  const url = `http://localhost:5000/mysubmission?email=${user?.email}`;
   useEffect(() => {
  
     axios
@@ -23,7 +23,7 @@ const MySubmission = () => {
       <h2 className="text-4xl  mb-6 font-semibold text-center">
         My Submissions
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
     
         {
             mysubmissions.map((submission) => <MySubmissionTable

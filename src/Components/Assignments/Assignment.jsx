@@ -6,10 +6,10 @@ const Assignment = ({ assignment, handleAssignmentDelete }) => {
     const { _id, title, marks,  difficulty, img_url, description, email   } = assignment;
   return (
     <div className="p-6  border rounded-xl">
-      <div className="flex gap-6">
+      <div className="flex flex-col md:flex-row gap-6">
         <img
           src={img_url}
-          className="w-[300px] rounded-lg shadow-2xl"
+          className="w-full md:w-[300px] rounded-lg shadow-2xl"
         />
         <div>
           <h1 className="text-3xl font-bold  ">{title}</h1>
@@ -17,7 +17,7 @@ const Assignment = ({ assignment, handleAssignmentDelete }) => {
             <h2 className='text-xl font-semibold text-[#23BE0A]'>#Marks : {marks}</h2>
             <h2 className='text-xl font-semibold text-[#356feb]'>#Difficulty : {difficulty}</h2>
          </div>
-         <p className='w-3/4 mb-4'>{description}</p>
+         <p className='md:w-3/4 mb-4'>{description}</p>
          {/* <p className='text-[#23BE0A] font-semibold mb-3'>Created By : {email}</p> */}
           <div className='space-x-5'>
             <Link to={`/update/${_id}`}>

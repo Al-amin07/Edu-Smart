@@ -7,7 +7,7 @@ import Feature from "./Header/Feature";
 
 const Home = () => {
     return (
-        <div>
+        <div className="px-5">
         <Banner></Banner>
         <Feature></Feature>
         <Faq></Faq>

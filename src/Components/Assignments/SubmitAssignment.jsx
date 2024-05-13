@@ -58,10 +58,10 @@ const SubmitAssignment = () => {
 
  
   return (
-    <div>
+    <div className="mx-3">
       <form style={{
         backgroundImage: "url('/submit2.jpeg')"
-      }} className="rounded-lg px-8 py-4 bg-cover bg-center bg-no-repeat w-1/2 mx-auto" onSubmit={handleSubmit}>
+      }} className="rounded-lg px-8 py-4 bg-cover bg-center bg-no-repeat lg:w-1/2 mx-auto" onSubmit={handleSubmit}>
         <h2 className="text-3xl font-bold text-center my-4">
           Submit Assignment
         </h2>

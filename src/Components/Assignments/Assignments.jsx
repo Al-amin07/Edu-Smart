@@ -78,7 +78,7 @@ const Assignments = () => {
     }
 
     return (
-        <div >
+        <div className="px-4">
           <div className="mb-12 flex justify-center">
           <select onChange={handleDiffSort} className="w-[200px] border px-3 py-2 text-lg" name="" id="">
                  <option value="none" selected disabled hidden>

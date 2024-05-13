@@ -4,7 +4,7 @@ const Faq = () => {
   return (
    <div className='my-16 '>
     <h1 className='text-4xl font-bold text-center mb-12'>Some Frequently Asked Questions</h1>
-     <div className='flex gap-5 bg-base-100'>
+     <div className='flex flex-col md:flex-row gap-5 bg-base-100'>
         <div className='flex-1'>
             <img className='w-full' src={faq} alt="" />
         </div>

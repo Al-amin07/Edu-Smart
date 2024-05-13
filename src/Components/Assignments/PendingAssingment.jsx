@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import SinglePending from "./SinglePending";
+import useAuth from "../Hooks/useAuth";
 
 const PendingAssingment = () => {
   const [assignments, setAssignments] = useState([]);
+  const { user } = useAuth();
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/submitAssignment")
+      .get(`http://localhost:5000/submitAssignment?email=${user?.email}`, {withCredentials: true})
       .then((res) => {
         setAssignments(res.data);
         console.log(assignments);

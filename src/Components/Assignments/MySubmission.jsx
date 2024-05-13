@@ -11,7 +11,7 @@ const MySubmission = () => {
   useEffect(() => {
  
     axios
-      .get(url)
+      .get(url, {withCredentials: true})
       .then((res) => {
         setMySubmissions(res.data);
         console.log(res.data);

@@ -36,7 +36,7 @@ const SubmitAssignment = () => {
      }
      console.log(SubmittedAssignment);
    
-    axios.post('http://localhost:5000/submitAssignment', SubmittedAssignment)
+    axios.post('https://assignment-11-server-4.vercel.app/submitAssignment', SubmittedAssignment)
     .then(res => {
         // console.log('Success', res.data)
         if(res.data.success){

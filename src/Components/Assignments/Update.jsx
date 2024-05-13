@@ -30,7 +30,7 @@ const Update = () => {
         const due_date = startDate;
      
         const updateAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
-        axios.put(`http://localhost:5000/updateAssignment/${data._id}`, updateAssignment)
+        axios.put(`https://assignment-11-server-4.vercel.app/updateAssignment/${data._id}`, updateAssignment)
         .then(res => {
             console.log(res.data);
             if(res.data.modifiedCount || res.data.matchedCount){
@@ -54,7 +54,7 @@ const Update = () => {
     return (
         <div
         style={{
-          backgroundImage: "url('/update6.jpg')",
+          backgroundImage: "url('/9.jpeg')",
         }}
         className="hero bg-base-200 bg-cover bg-no-repeat  bg-center px-40 py-16 mt-12"
       >

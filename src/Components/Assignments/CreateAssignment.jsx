@@ -25,12 +25,22 @@ const CreateAssignment = () => {
     const difficulty = diff;
     const email = user.email;
 
-    const due_date = startDate;
+    // const due_date = startDate.toLocaleDateString('en-US');
+    
+    const formattedDate = new Date(startDate);
+    const day = formattedDate.getDate();
+    const month = formattedDate.getMonth() + 1; // Month is 0-indexed
+    const year = formattedDate.getFullYear();
+    const update =  `${day}/${month}/${year}`;
+    // console.log(update);
+    const due_date = update;
+
+    // console.log(due_date);
     // console.log(title, marks, image, difficulty, email, date);
     const newAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
     console.log(newAssignment);
     axios
-      .post("http://localhost:5000/created", newAssignment)
+      .post("https://assignment-11-server-4.vercel.app/created", newAssignment)
       .then((res) => {
         if (res.data.insertedId) {
           toast("Assignment Added Successfully!!!");
@@ -122,6 +132,7 @@ const CreateAssignment = () => {
               className="py-3 w-[430px] rounded-lg px-3 "
               selected={startDate}
               onChange={(date) => setStartDate(date)}
+             
             />
           </div>
           <div className="form-control">
@@ -153,6 +164,7 @@ const CreateAssignment = () => {
             className=" col-span-2 h-[170px] textarea textarea-bordered"
             placeholder="Description"
             name="area"
+            required
           ></textarea>
           <div className="form-control mt-6 col-span-2">
             <button type="submit" className="btn btn-primary">

@@ -51,18 +51,18 @@ const router = createBrowserRouter([
       {
         path: '/update/:id',
         element: <Private><Update></Update></Private>,
-        loader: ({params}) => fetch(`http://localhost:5000/update/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-11-server-4.vercel.app/update/${params.id}`)
         
       },
       {
         path: '/details/:id',
         element: <Private><Details></Details></Private>,
-        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-11-server-4.vercel.app/details/${params.id}`)
       },
       {
         path: '/details/:id/takeAssignment/:id',
         element: <Private><SubmitAssignment></SubmitAssignment></Private>,
-        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-11-server-4.vercel.app/details/${params.id}`)
       },
       {
         path: '/mysubmission',
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
       {
         path: '/getMark/:id',
         element: <Mark></Mark>,
-        loader: ({params}) => fetch(`http://localhost:5000/getMark/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-11-server-4.vercel.app/getMark/${params.id}`)
       }
     ],
   },

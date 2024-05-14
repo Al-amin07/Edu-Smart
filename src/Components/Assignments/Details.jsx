@@ -1,8 +1,28 @@
-import { Link, useLoaderData } from "react-router-dom";
+import axios from "axios";
+
+import { useEffect } from "react";
+import { useState } from "react";
+import { Link,  useParams } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 const Details = () => {
-  const assignment = useLoaderData();
-  console.log(assignment);
+  const { user } = useAuth()
+  const { id } = useParams();
+  console.log(id);
+ 
+  const [assignment, setAssignment] = useState({});
+
+  
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/details/${id}?email=${user.email}`, {withCredentials: true})
+    .then(res => {
+      setAssignment(res.data)
+      console.log(res.data);
+    })
+    .catch(error => console.log(error))
+  }, [])
+
   const { _id, img_url, title, marks, due_date, description, difficulty, email } =
     assignment;
 

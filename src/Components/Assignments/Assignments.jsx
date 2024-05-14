@@ -12,12 +12,12 @@ const Assignments = () => {
     // console.log(user.email);
     // const [diff, setDiff] = useState(null)
     useEffect(() => {
-        axios.get('https://assignment-11-server-4.vercel.app/allAssignment')
+        axios.get('http://localhost:5000/allAssignment')
         .then(res => {
             setAssignments(res.data);
         })
         .catch(error => console.log(error))
-        // fetch('https://assignment-11-server-4.vercel.app/allAssignment')
+        // fetch('http://localhost:5000/allAssignment')
         // .then(res => res.json())
         // .then(data =>console.log(data))
     }, [])
@@ -44,7 +44,7 @@ const Assignments = () => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://assignment-11-server-4.vercel.app/assignment/${id}`)
+                axios.delete(`http://localhost:5000/assignment/${id}`)
                 .then(res => {
                     if(res.data.deletedCount){
                         Swal.fire({
@@ -68,7 +68,7 @@ const Assignments = () => {
 
     const handleDiffSort = e => {
         console.log(e.target.value);
-        const url = `https://assignment-11-server-4.vercel.app/difficulty?diff=${e.target.value}`
+        const url = `http://localhost:5000/difficulty?diff=${e.target.value}`
         axios.get(url)
         .then(res => {
             setAssignments(res.data);

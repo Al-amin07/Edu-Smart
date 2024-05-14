@@ -1,19 +1,31 @@
 import axios from "axios";
 import {  useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import {  useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
+import moment from "moment";
 
 const Update = () => {
     const { user } = useAuth();
+    const { id } = useParams();
+    const [data ,setData] = useState({});
     const navigate = useNavigate();
-    const data = useLoaderData();
-    // console.log(data);
-    
+   
+
+    useEffect(() => {
+      axios.get(`http://localhost:5000/update/${id}?email=${user.email}`, {withCredentials: true})
+      .then(res => {
+        setData(res.data);
+        console.log(res.data);
+      })
+      .catch(error => console.log(error))
+
+    }, [])
    
     const [startDate, setStartDate] = useState(new Date());
     const [diff, setDiff] = useState("Easy");
@@ -27,10 +39,39 @@ const Update = () => {
         const difficulty = diff;
         const email = user.email;
     
-        const due_date = startDate;
+        const todayDate = moment().format('L').split('/');  
+        const tday = parseInt(todayDate[1])
+        const tMonth = parseInt(todayDate[0])
+        const tYear = parseInt(todayDate[2])
+        console.log(typeof(todayDate[1]));
+        const formattedDate = new Date(startDate);
+        const day = formattedDate.getDate();
+        const month = formattedDate.getMonth() + 1; // Month is 0-indexed
+        const year = formattedDate.getFullYear();
+        if(tYear === year ){
+          if(tMonth === month){
+            if(tday > day){
+              toast('Invalid Time!!!');
+              return;
+            }
+          }
+          else if(tMonth > month){
+            toast('Invalid Time!!!');
+            return;
+          }
+        }
+        else if(tYear > year){
+          toast('Invalid Time!!!');
+          return;
+        }
+     
+        const update =  `${day}/${month}/${year}`;
+        
+        const due_date = update;
      
         const updateAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
-        axios.put(`https://assignment-11-server-4.vercel.app/updateAssignment/${data._id}`, updateAssignment)
+        console.log(updateAssignment);
+        axios.put(`http://localhost:5000/updateAssignment/${data._id}`, updateAssignment)
         .then(res => {
             console.log(res.data);
             if(res.data.modifiedCount || res.data.matchedCount){

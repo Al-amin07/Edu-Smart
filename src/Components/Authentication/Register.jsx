@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,7 +7,7 @@ import { updateProfile } from "firebase/auth";
 import auth from "../../Firebase/Firebase.config";
 const Register = () => {
   const { register, logOut } = useAuth();
-//   const navigate = useNavigate()
+  const navigate = useNavigate()
   const handleUserRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,7 +15,19 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photo = form.photo.value;
-    console.log(email, name, password, photo);
+    if (!/[A-Z]/.test(password)) {
+      toast("Please Enter Uppercase");
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      toast("Please Enter Lowercase");
+      return;
+    }
+    if (password.length < 6) {
+      toast("Pass Must be 6 Char");
+      return;
+    }
+    // console.log(email, name, password, photo);
     register(email, password)
     .then(result => {
         console.log(result.user);
@@ -40,7 +52,7 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1500
           });
-        //   navigate('/login')
+          navigate('/login')
     })
     .catch(error => toast(error.message))
   };

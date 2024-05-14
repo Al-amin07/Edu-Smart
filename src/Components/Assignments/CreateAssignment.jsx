@@ -7,6 +7,7 @@ import useAuth from "../Hooks/useAuth";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import moment from "moment";
 
 const CreateAssignment = () => {
   const { user } = useAuth();
@@ -26,21 +27,40 @@ const CreateAssignment = () => {
     const email = user.email;
 
     // const due_date = startDate.toLocaleDateString('en-US');
-    
+    const todayDate = moment().format('L').split('/');  
+    const tday = parseInt(todayDate[1])
+    const tMonth = parseInt(todayDate[0])
+    const tYear = parseInt(todayDate[2])
+    console.log(typeof(todayDate[1]));
     const formattedDate = new Date(startDate);
     const day = formattedDate.getDate();
     const month = formattedDate.getMonth() + 1; // Month is 0-indexed
     const year = formattedDate.getFullYear();
+    if(tYear === year ){
+      if(tMonth === month){
+        if(tday > day){
+          toast('Invalid Time!!!');
+          return;
+        }
+      }
+      else if(tMonth > month){
+        toast('Invalid Time!!!');
+        return;
+      }
+    }
+    else if(tYear > year){
+      toast('Invalid Time!!!');
+      return;
+    }
+ 
     const update =  `${day}/${month}/${year}`;
-    // console.log(update);
+    
     const due_date = update;
 
-    // console.log(due_date);
-    // console.log(title, marks, image, difficulty, email, date);
     const newAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
     console.log(newAssignment);
     axios
-      .post("https://assignment-11-server-4.vercel.app/created", newAssignment)
+      .post(`http://localhost:5000/created?email=${user.email}`, newAssignment, {withCredentials: true})
       .then((res) => {
         if (res.data.insertedId) {
           toast("Assignment Added Successfully!!!");

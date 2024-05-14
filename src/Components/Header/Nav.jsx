@@ -23,13 +23,13 @@ const Nav = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink className={"btn btn-ghost text-white font-medium"} to="/">
+        <NavLink className={"btn btn-ghost text-black lg:text-white font-medium"} to="/">
           Home
         </NavLink>
       </li>
       <li>
         <NavLink
-          className={"btn btn-ghost text-white font-medium"}
+          className={"btn btn-ghost text-black lg:text-white font-medium"}
           to="/assignment"
         >
           Assignments
@@ -40,7 +40,7 @@ const Nav = () => {
         <>
           <li>
             <NavLink
-              className={"btn btn-ghost text-white font-medium"}
+              className={"btn btn-ghost text-black lg:text-white font-medium"}
               to="/createassignment"
             >
               Create Assignments
@@ -48,7 +48,7 @@ const Nav = () => {
           </li>
           <li>
             <NavLink
-              className={"btn btn-ghost text-white font-medium"}
+              className={"btn btn-ghost text-black lg:text-white font-medium"}
               to="/pendingassignment"
             >
               Pending Assignments
@@ -58,7 +58,7 @@ const Nav = () => {
       ) : (
         <li>
           <NavLink
-            className={"btn btn-ghost text-white font-medium"}
+            className={"btn btn-ghost text-black lg:text-white font-medium"}
             to="/register"
           >
             Register

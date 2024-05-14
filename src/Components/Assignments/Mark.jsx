@@ -29,7 +29,7 @@ const Mark = () => {
       id: _id,
     };
     console.log(feedbackData);
-    axios.patch("https://assignment-11-server-4.vercel.app/obtainedMark", feedbackData)
+    axios.patch("http://localhost:5000/obtainedMark", feedbackData)
     .then(res => {
         if(res.data.matchedCount || res.data.modifiedCount){
              Swal.fire({

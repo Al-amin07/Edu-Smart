@@ -6,7 +6,7 @@ import FeatureCard from "./FeatureCard";
 const Feature = () => {
     const [ datas, setDatas] = useState([]);
     useEffect(() => {
-        axios.get('https://assignment-11-server-4.vercel.app/feature')
+        axios.get('http://localhost:5000/feature')
         .then(res => {
             setDatas(res.data);
         })

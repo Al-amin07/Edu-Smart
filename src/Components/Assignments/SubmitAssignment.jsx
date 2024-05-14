@@ -1,12 +1,25 @@
 import axios from "axios";
 
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const SubmitAssignment = () => {
   const { user } = useAuth();
-  const assignment = useLoaderData();
+  const { id } = useParams();
+  const [assignment, setAssignment] = useState({});
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/details/${id}?email=${user?.email}`, {withCredentials: true})
+    .then(res => {
+      setAssignment(res.data)
+      // console.log(res.data);
+    })
+    .catch(error => console.log(error))
+
+  }, [])
   const navigate = useNavigate();
   const { title, marks, difficulty, img_url
 , due_date  } = assignment;
@@ -34,9 +47,9 @@ const SubmitAssignment = () => {
       note,
       status: 'pending'
      }
-     console.log(SubmittedAssignment);
+    //  console.log(SubmittedAssignment);
    
-    axios.post('https://assignment-11-server-4.vercel.app/submitAssignment', SubmittedAssignment)
+    axios.post('http://localhost:5000/submitAssignment', SubmittedAssignment)
     .then(res => {
         // console.log('Success', res.data)
         if(res.data.success){

@@ -19,7 +19,7 @@ const FeatureCard = ({singledata}) => {
       </div>
     );
 };
-// https://assignment-11-server-4.vercel.app
+// http://localhost:5000
 FeatureCard.propTypes = {
     singledata: PropTypes.object
 }

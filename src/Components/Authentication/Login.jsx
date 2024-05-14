@@ -1,13 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
+import { BsGithub } from "react-icons/bs";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = () => {
-    const { logIn } = useAuth();
+    const { logIn, githubLogin, googleLogin } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     console.log(location);
@@ -32,6 +34,38 @@ const Login = () => {
         .catch(error => toast(error.message))
 
 
+    }
+
+    const handleGoogleLogin = () => {
+      googleLogin()
+      .then(result => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "SuccessFully Login",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        console.log(result.user);
+        navigate(location?.state ? location.state : '/')
+      })
+      .catch(error => console.log(error))
+    }
+
+    const handleGithubLogin = () => {
+      githubLogin()
+      .then(result => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "SuccessFully Login",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        console.log(result.user);
+        navigate(location?.state ? location.state : '/')
+      })
+      .catch(error => console.log(error))
     }
     
     
@@ -81,9 +115,11 @@ const Login = () => {
               <button type="submit" className="btn btn-primary">Login</button>
             </div>
           </form>
-         <div>
-
-         </div>
+          <h1 className="text-3xl font-medium text-center text-white">Sign in With</h1>
+            <div className="flex justify-center gap-3 my-3">
+              <button onClick={handleGoogleLogin} className="btn btn-outline text-lg"><FcGoogle className="text-2xl"/> Google</button>
+              <button onClick={handleGithubLogin} className="btn btn-outline text-lg"><BsGithub className="text-2xl"/> Github</button>
+            </div>
             <p className="px-8 text-white pb-6">New to Website? Please <Link to='/register' className="text-blue-800 underline font-bold">Register</Link></p>
         </div>
       </div>

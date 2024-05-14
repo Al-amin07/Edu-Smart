@@ -12,7 +12,7 @@ const SubmitAssignment = () => {
   const [assignment, setAssignment] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/details/${id}?email=${user?.email}`, {withCredentials: true})
+    axios.get(`https://assignment-11-server-4.vercel.app/details/${id}?email=${user?.email}`, {withCredentials: true})
     .then(res => {
       setAssignment(res.data)
       // console.log(res.data);
@@ -49,7 +49,7 @@ const SubmitAssignment = () => {
      }
     //  console.log(SubmittedAssignment);
    
-    axios.post('http://localhost:5000/submitAssignment', SubmittedAssignment)
+    axios.post('https://assignment-11-server-4.vercel.app/submitAssignment', SubmittedAssignment)
     .then(res => {
         // console.log('Success', res.data)
         if(res.data.success){

@@ -23,6 +23,7 @@ const Register = () => {
       toast("Please Enter Lowercase");
       return;
     }
+    // https://assignment-11-server-4.vercel.app
     if (password.length < 6) {
       toast("Pass Must be 6 Char");
       return;

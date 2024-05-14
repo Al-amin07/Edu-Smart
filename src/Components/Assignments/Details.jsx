@@ -15,7 +15,7 @@ const Details = () => {
   
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/details/${id}?email=${user.email}`, {withCredentials: true})
+    axios.get(`https://assignment-11-server-4.vercel.app/details/${id}?email=${user.email}`, {withCredentials: true})
     .then(res => {
       setAssignment(res.data)
       console.log(res.data);

@@ -42,12 +42,12 @@ const AuthProvider = ({children}) => {
             const userEmail = { email: currentUser?.email}
             // const email = { currentUser.email};
             if(currentUser){
-                axios.post('http://localhost:5000/jwt',userEmail, {withCredentials: true})
+                axios.post('https://assignment-11-server-4.vercel.app/jwt',userEmail, {withCredentials: true})
                 .then()
                 .catch();
             }
             else{
-                axios.post('http://localhost:5000/logout',userEmail,{withCredentials: true})
+                axios.post('https://assignment-11-server-4.vercel.app/logout',userEmail,{withCredentials: true})
             }
             
         })

@@ -60,7 +60,7 @@ const CreateAssignment = () => {
     const newAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
     console.log(newAssignment);
     axios
-      .post(`http://localhost:5000/created?email=${user.email}`, newAssignment, {withCredentials: true})
+      .post(`https://assignment-11-server-4.vercel.app/created?email=${user.email}`, newAssignment, {withCredentials: true})
       .then((res) => {
         if (res.data.insertedId) {
           toast("Assignment Added Successfully!!!");
@@ -80,7 +80,7 @@ const CreateAssignment = () => {
       style={{
         backgroundImage: "url('/9.jpeg')",
       }}
-      className="hero bg-base-200 bg-cover bg-no-repeat  bg-center px-2 md:px-20 lg:px-40 py-16 mt-12"
+      className="hero bg-base-200 bg-cover bg-no-repeat  bg-center px-2 md:px-20 lg:px-40 py-12 lg:py-16 mt-12"
     >
       <div className="card  w-full  shadow-2xl border-2">
         <h2 className="text-3xl font-bold text-center mt-4 text-white">
@@ -88,7 +88,7 @@ const CreateAssignment = () => {
         </h2>
         <form
           onSubmit={handleCreate}
-          className="px-2 py-2 md:px-6 md:py-6  grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="px-6 py-6 md:px-12 md:py-12  grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           <div className="form-control">
             <label className="label">
@@ -130,6 +130,7 @@ const CreateAssignment = () => {
               required
             />
           </div>
+
           <div className="form-control ">
           <label className="label">
               <span className="label-text text-white text-lg">Difficulty</span>
@@ -146,15 +147,17 @@ const CreateAssignment = () => {
               <option value="Hard">Hard</option>
             </select>
           </div>
-          <div className="mt-2">
+
+          <div className="mt-2 w-full">
             <h2 className="mb-3  text-white">Due Date : </h2>
             <DatePicker
-              className="py-3 md:w-[250px] lg:w-[430px] rounded-lg px-3 "
+              className="py-3 w-[400px] md:w-[600px] lg:w-[430px] rounded-lg px-3 "
               selected={startDate}
               onChange={(date) => setStartDate(date)}
              
             />
           </div>
+
           <div className="form-control">
             <label className="label">
               <span className="label-text  text-white text-lg">Email</span>
@@ -180,19 +183,22 @@ const CreateAssignment = () => {
               required
             />
           </div> */}
+
           <textarea
-            className=" col-span-2 h-[170px] textarea textarea-bordered"
+            className=" lg:col-span-2 h-[170px] textarea textarea-bordered"
             placeholder="Description"
             name="area"
             required
           ></textarea>
-          <div className="form-control mt-6 col-span-2">
+
+
+          <div className="form-control mt-6 lg:col-span-2">
             <button type="submit" className="btn btn-primary">
               Create
             </button>
           </div>
         </form>
-        <div></div>
+       
       </div>
       <ToastContainer />
     </div>

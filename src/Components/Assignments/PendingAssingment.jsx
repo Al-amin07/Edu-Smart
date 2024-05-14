@@ -9,7 +9,7 @@ const PendingAssingment = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/submitAssignment?email=${user?.email}`, {withCredentials: true})
+      .get(`https://assignment-11-server-4.vercel.app/submitAssignment?email=${user?.email}`, {withCredentials: true})
       .then((res) => {
         setAssignments(res.data);
         console.log(assignments);
@@ -37,7 +37,7 @@ const PendingAssingment = () => {
     };
     console.log(feedbackData);
     // axios
-    //   .patch("http://localhost:5000/obtainedMark", feedbackData)
+    //   .patch("https://assignment-11-server-4.vercel.app/obtainedMark", feedbackData)
     //   .then((res) => {
     //     console.log(res.data);
     //     const newAssignments = assignments.filter((ass) => ass._id !== _id);

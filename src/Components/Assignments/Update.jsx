@@ -18,7 +18,7 @@ const Update = () => {
    
 
     useEffect(() => {
-      axios.get(`http://localhost:5000/update/${id}?email=${user.email}`, {withCredentials: true})
+      axios.get(`https://assignment-11-server-4.vercel.app/update/${id}?email=${user.email}`, {withCredentials: true})
       .then(res => {
         setData(res.data);
         console.log(res.data);
@@ -38,7 +38,7 @@ const Update = () => {
         const description = form.area.value;
         const difficulty = diff;
         const email = user.email;
-    
+    // https://assignment-11-server-4.vercel.app
         const todayDate = moment().format('L').split('/');  
         const tday = parseInt(todayDate[1])
         const tMonth = parseInt(todayDate[0])
@@ -71,7 +71,7 @@ const Update = () => {
      
         const updateAssignment = { title, marks ,difficulty, description,due_date,   email, img_url };
         console.log(updateAssignment);
-        axios.put(`http://localhost:5000/updateAssignment/${data._id}`, updateAssignment)
+        axios.put(`https://assignment-11-server-4.vercel.app/updateAssignment/${data._id}`, updateAssignment)
         .then(res => {
             console.log(res.data);
             if(res.data.modifiedCount || res.data.matchedCount){
@@ -97,7 +97,7 @@ const Update = () => {
         style={{
           backgroundImage: "url('/9.jpeg')",
         }}
-        className="hero bg-base-200 bg-cover bg-no-repeat  bg-center px-40 py-16 mt-12"
+        className="hero bg-base-200 bg-cover bg-no-repeat  bg-center px-2 md:px-20 lg:px-40 py-12 lg:py-16 mt-12"
       >
         <div className="card  w-full  shadow-2xl border-2">
           <h2 className="text-3xl font-bold text-center mt-4 text-white">
@@ -105,7 +105,7 @@ const Update = () => {
           </h2>
           <form
             onSubmit={handleUpdate}
-            className="card-body  grid grid-cols-2 gap-6"
+            className="px-6 py-6 lg:px-10 lg:py-10 gap-6 grid grid-cols-1 lg:grid-cols-2"
           >
             <div className="form-control">
               <label className="label">
@@ -169,7 +169,7 @@ const Update = () => {
             <div className="mt-2">
               <h2 className="mb-3  text-white">Due Date : </h2>
               <DatePicker
-                className="py-3 w-[430px] rounded-lg px-3 "
+                className="py-3 w-[400px] md:w-[600px] lg:w-[430px] rounded-lg px-3 "
                 selected={startDate}
                 defaultValue={data.date}
                 onChange={(date) => setStartDate(date)}
@@ -190,18 +190,18 @@ const Update = () => {
             </div>
          
             <textarea
-              className=" col-span-2 h-[170px] textarea textarea-bordered"
+              className="lg:col-span-2 w-full h-[170px] mt-5 textarea textarea-bordered"
               placeholder="Description"
               name="area"
               defaultValue={data.description}
             ></textarea>
-            <div className="form-control mt-6 col-span-2">
+            <div className="form-control mt-6  lg:col-span-2">
               <button type="submit" className="btn btn-primary">
                 Update Assignment
               </button>
             </div>
           </form>
-          <div></div>
+          
         </div>
         <ToastContainer />
       </div>

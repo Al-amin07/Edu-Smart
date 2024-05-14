@@ -18,6 +18,8 @@ const AuthProvider = ({children}) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }
+
+    // https://assignment-11-server-4.vercel.app
     const logOut = () => {
         setLoading(true)
         return signOut(auth);
@@ -38,16 +40,21 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
-            setLoading(false)
+          
             const userEmail = { email: currentUser?.email}
             // const email = { currentUser.email};
             if(currentUser){
                 axios.post('https://assignment-11-server-4.vercel.app/jwt',userEmail, {withCredentials: true})
-                .then()
+                .then(() => {
+                    setLoading(false);
+                })
                 .catch();
             }
             else{
                 axios.post('https://assignment-11-server-4.vercel.app/logout',userEmail,{withCredentials: true})
+                .then(() => {
+                    setLoading(false);
+                })
             }
             
         })

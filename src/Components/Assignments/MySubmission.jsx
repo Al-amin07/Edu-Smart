@@ -14,7 +14,7 @@ const MySubmission = () => {
       .get(url, {withCredentials: true})
       .then((res) => {
         setMySubmissions(res.data);
-        console.log(res.data);
+     
       })
       .catch((error) => console.log(error));
   }, []);

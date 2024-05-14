@@ -31,7 +31,7 @@ const CreateAssignment = () => {
     const tday = parseInt(todayDate[1])
     const tMonth = parseInt(todayDate[0])
     const tYear = parseInt(todayDate[2])
-    console.log(typeof(todayDate[1]));
+    
     const formattedDate = new Date(startDate);
     const day = formattedDate.getDate();
     const month = formattedDate.getMonth() + 1; // Month is 0-indexed
@@ -69,10 +69,10 @@ const CreateAssignment = () => {
       })
       .catch((error) => console.log(error));
   };
-  console.log(startDate);
+  
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    
     setDiff(e.target.value);
   };
   return (

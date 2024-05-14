@@ -12,13 +12,13 @@ const Login = () => {
     const { logIn, githubLogin, googleLogin } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
-    console.log(location);
+    
     const handleUserLogin = e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        
         logIn(email, password)
         .then(result => {
             Swal.fire({

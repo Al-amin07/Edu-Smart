@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { MdFeedback } from "react-icons/md";
 const MySubmissionTable = ({ submission }) => {
-  console.log(submission);
+  
 
   const {  img_url, title, marks, status } =
     submission;

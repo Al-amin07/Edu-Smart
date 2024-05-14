@@ -28,7 +28,7 @@ const Register = () => {
       toast("Pass Must be 6 Char");
       return;
     }
-    // console.log(email, name, password, photo);
+    
     register(email, password)
     .then(result => {
         console.log(result.user);

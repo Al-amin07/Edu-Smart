@@ -9,8 +9,7 @@ import useAuth from "../Hooks/useAuth";
 const Assignments = () => {
     const [assignments, setAssignments] = useState([]);
     const { user } = useAuth();
-    // console.log(user.email);
-    // const [diff, setDiff] = useState(null)
+    
     useEffect(() => {
         axios.get('https://assignment-11-server-4.vercel.app/allAssignment')
         .then(res => {
@@ -67,7 +66,7 @@ const Assignments = () => {
     
 
     const handleDiffSort = e => {
-        console.log(e.target.value);
+        
         const url = `https://assignment-11-server-4.vercel.app/difficulty?diff=${e.target.value}`
         axios.get(url)
         .then(res => {

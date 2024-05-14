@@ -8,17 +8,17 @@ import useAuth from "../Hooks/useAuth";
 const Details = () => {
   const { user } = useAuth()
   const { id } = useParams();
-  console.log(id);
+ 
  
   const [assignment, setAssignment] = useState({});
 
-  
+  // https://assignment-11-server-4.vercel.app
 
   useEffect(() => {
     axios.get(`https://assignment-11-server-4.vercel.app/details/${id}?email=${user.email}`, {withCredentials: true})
     .then(res => {
       setAssignment(res.data)
-      console.log(res.data);
+      
     })
     .catch(error => console.log(error))
   }, [])
@@ -28,7 +28,10 @@ const Details = () => {
 
    
   return (
-    <div className="flex flex-col mx-3 md:flex-row gap-6 shadow-2xl p-6 rounded-xl ">
+    <div>
+      {
+        assignment.legnth !== 0 ? 
+        <div className="flex flex-col mx-3 md:flex-row gap-6 shadow-2xl p-6 rounded-xl ">
       <div className="flex-1">
         <img src={img_url} alt="" />
       </div>
@@ -51,46 +54,22 @@ const Details = () => {
           </span>
         </p>
         <div>
-          {/* <button className="btn text-lg font-medium bg-[#E0EEFF] text-[#538AEC]">
-            Take Assignment
-          </button> */}
-          {/* You can open the modal using document.getElementById('ID').showModal() method */}
+      
           <Link to={`takeAssignment/${_id}`}
             className="btn text-lg font-medium bg-[#E0EEFF] text-[#538AEC]"
             
           >
            Take Assignment
           </Link>
-          {/* <button
-            className="btn text-lg font-medium bg-[#E0EEFF] text-[#538AEC]"
-            onClick={() => document.getElementById("my_modal_3").showModal()}
-          >
-           Take Assignment
-          </button> */}
-          {/* <dialog id="my_modal_3" className="modal w-full">
-            <div className="modal-box border-2 w-3/4">
-              <form method="dialog">
-                
-                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                  ✕
-                </button>
-              </form>
-              
-              <label>Select pdf/doc file :  </label>
-              
-       
-              
-              <form onSubmit={handleSubmit} >
-              <input type="file" required name="upload" accept=".doc, .docx, .pdf" /> <br /> <br />
-              <label>Short Note :  </label>
-              <textarea className="border w-full px-8" required name="area"  rows={6} id=""></textarea>
-              <input  className="btn btn-primary my-4
-              " type="button" value="Submit" />
-              </form>
-            </div>
-          </dialog> */}
+        
         </div>
       </div>
+    </div>
+    : 
+    <div className="h-[300px] flex justify-center items-center">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+      }
     </div>
   );
 };

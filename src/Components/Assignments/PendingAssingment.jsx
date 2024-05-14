@@ -12,41 +12,12 @@ const PendingAssingment = () => {
       .get(`https://assignment-11-server-4.vercel.app/submitAssignment?email=${user?.email}`, {withCredentials: true})
       .then((res) => {
         setAssignments(res.data);
-        console.log(assignments);
+        
       })
       .catch((error) => console.log(error));
   }, []);
 
-  const handleSubmit = (_id) => {
-    console.log(_id);
-    const obtainedMarksField = document.getElementById("marks");
-    const obtainedMarks = obtainedMarksField.value;
-
-    const feedbackField = document.getElementById("feedback");
-    const feedback = feedbackField.value;
-    if (feedback === "" || obtainedMarks === "") {
-      return;
-    }
-
-    const status = "completed";
-    const feedbackData = {
-      obtainedMarks,
-      feedback,
-      status,
-      id: _id,
-    };
-    console.log(feedbackData);
-    // axios
-    //   .patch("https://assignment-11-server-4.vercel.app/obtainedMark", feedbackData)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     const newAssignments = assignments.filter((ass) => ass._id !== _id);
-    //     setAssignments(newAssignments);
-    //     obtainedMarksField.value = "";
-    //     feedbackField.value = "";
-    //   })
-    //   .catch((error) => console.log(error));
-  };
+  
 
   return (
     <div className="">
@@ -79,7 +50,7 @@ const PendingAssingment = () => {
                 <SinglePending
                   key={assignment._id}
                   ind={ind + 1}
-                  handleSubmit={handleSubmit}
+                  
                   assignment={assignment}
                 ></SinglePending>
               ))}

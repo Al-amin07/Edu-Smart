@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 const Mark = () => {
   const data = useLoaderData();
-  console.log(data);
+ 
   const { _id, note, file_url, marks } = data;
 
   const handleSubmit = (e) => {
@@ -54,7 +54,7 @@ const Mark = () => {
         Assignment Feedback
       </h2>
       <h3 className=" text-lg font-medium">
-        Uploded File : <span className="underline">{file_url}</span>
+        Uploded File : <span className="">{file_url}</span>
       </h3>
       <p className="py-4">
         <span>Notes : </span>

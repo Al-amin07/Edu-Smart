@@ -24,7 +24,7 @@ const Feature = () => {
                     ></FeatureCard>)
 
                     : 
-                    <div className="h-[300px] grid-cols-3 flex justify-center items-center">
+                    <div className="h-[300px]   md:col-span-2 lg:col-span-3 flex justify-center items-center">
                         <span className="loading loading-spinner loading-lg"></span>
                     </div>
                 }

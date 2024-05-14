@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const SinglePending = ({ assignment, ind}) => {
   // const { user } = useAuth();
-  console.log(assignment);
+  // console.log(assignment);
   const { _id,  title, marks, name,  } = assignment;
  
 
